@@ -4,16 +4,16 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     return (
-        <div>
-            <div className="navbar bg-base-100">
+        <div className='sticky top-0 z-10'>
+            <div className="navbar bg-blue-500 text-white ">
                 <div className="flex-1">
                     <img src={logo} alt="" className='h-10 w-14'/>
-                    <a className="btn btn-ghost normal-case text-xl">MediCare</a>
+                    <Link to='/' className="btn btn-ghost normal-case text-xl">MediCare</Link>
                 </div>
                 <div className='flex me-5 gap-5'>
                     <Link>Find a doctors</Link>
                     <Link>Departments</Link>
-                    <Link>Doctors</Link>
+                    <Link to='/login'>Login</Link>
                 </div>
                 <div className="flex-none">
                     <div className="dropdown dropdown-end">

@@ -9,7 +9,7 @@ import img5 from '../../../assets/Photos/Hospital/img11.jpg'
 const Caurosel = () => {
     return (
         <div className="carousel">
-            <Carousel showArrows={true} showThumbs={false} dynamicHeight={false} autoPlay={true} interval={3000} infiniteLoop={true}>
+            <Carousel showArrows={true} showThumbs={false} dynamicHeight={false} autoPlay={true} interval={2000} infiniteLoop={true}>
                 <div>
                     <img src={img1} className="h-96" />
                 </div>

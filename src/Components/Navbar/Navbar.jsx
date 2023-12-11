@@ -11,8 +11,9 @@ const Navbar = () => {
                     <Link to='/' className="btn btn-ghost normal-case text-xl">MediCare</Link>
                 </div>
                 <div className='flex me-5 gap-5'>
-                    <Link>Find a doctors</Link>
-                    <Link>Departments</Link>
+                    <Link to='/find-a-doctor'>Find a doctors</Link>
+                    <Link to='/departments'>Departments</Link>
+                    <Link to='/notice'>Notice</Link>
                     <Link to='/login'>Login</Link>
                 </div>
                 <div className="flex-none">

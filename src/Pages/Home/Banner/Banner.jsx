@@ -12,7 +12,7 @@ const Banner = () => {
                     <div className='px-12'>
                         <h1 className="text-3xl font-bold">Emergency Ambulance Service!</h1>
                         <p className="py-6">We provide 24/7 hours emergency ambulance services ! If it is urgent to you, you can't take our ambulance services.</p>
-                        <button className="btn btn-primary"><Link to='tel:+8801701234567'>Call Ambulance</Link></button>
+                        <button className="btn btn-primary"><IoCall/><Link to='tel:+8801701234567'>Call Ambulance</Link></button>
                     </div>
                 </div>
             </div>

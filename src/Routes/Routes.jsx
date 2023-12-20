@@ -1,5 +1,5 @@
 import {
-    createBrowserRouter,
+    createBrowserRouter, useLocation,
   } from "react-router-dom";
 import Main from "../Pages/Main/Main";
 import Home from "../Pages/Home/Home/Home";
@@ -8,6 +8,7 @@ import Notice from "../Pages/Notice/Notice";
 
 
 export const router = createBrowserRouter(
+
     [
         {
             path:'/',
@@ -18,11 +19,11 @@ export const router = createBrowserRouter(
                     element:<Home></Home>
                 },
                 {
-                    path:'/login',
+                    path:'login',
                     element:<Login></Login>
                 },
                 {
-                    path:'/notice',
+                    path:'notice',
                     element:<Notice></Notice>
                 }
             ]

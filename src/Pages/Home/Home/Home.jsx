@@ -1,6 +1,4 @@
-import React from 'react';
 import Caurosel from '../Caurosel/Courosel';
-import Maps from '../Maps/Maps';
 import Banner from '../Banner/Banner';
 
 

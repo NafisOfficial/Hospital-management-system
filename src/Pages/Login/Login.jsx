@@ -29,7 +29,7 @@ const Login = () => {
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Password</span>
+                <span className="label-text text-white">Password</span>
               </label>
               <input
                 type="password"
@@ -38,13 +38,16 @@ const Login = () => {
                 required
               />
               <label className="label">
-                <a href="#" className="label-text-alt link link-hover">
+                <a href="#" className="label-text-alt link link-hover text-white">
                   Forgot password?
                 </a>
               </label>
             </div>
-            <div className="form-control mt-6">
+            <div className="form-control my-4">
               <button className="btn bg-[#3B82F6] border-0 hover:bg-transparent">Login</button>
+            </div>
+            <div className="form-control text-white">
+              If you do not have any account ? please <Link to='/register' className="link">register</Link>
             </div>
           </form>
         </div>

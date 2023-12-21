@@ -23,7 +23,7 @@ const Login = () => {
               <input
                 type="email"
                 placeholder="email"
-                className="input input-bordered"
+                className="input input-bordered border-white bg-transparent text-white"
                 required
               />
             </div>
@@ -34,7 +34,7 @@ const Login = () => {
               <input
                 type="password"
                 placeholder="password"
-                className="input input-bordered"
+                className="input input-bordered border-white bg-transparent text-white"
                 required
               />
               <label className="label">
@@ -44,7 +44,7 @@ const Login = () => {
               </label>
             </div>
             <div className="form-control my-4">
-              <button className="btn bg-[#3B82F6] border-0 hover:bg-transparent">Login</button>
+              <button className="btn bg-[#3B82F6] border-0 hover:bg-transparent text-white">Login</button>
             </div>
             <div className="form-control text-white">
               If you do not have any account ? please <Link to='/register' className="link">register</Link>

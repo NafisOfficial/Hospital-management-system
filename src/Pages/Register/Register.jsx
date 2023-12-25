@@ -60,14 +60,13 @@ const Register = () => {
                 id="new"
                 {...register("newPassword", {
                   required: true,
-                  minLength: { value: 8, message: "please provide minimum 8 character" },
-                  maxLength: {value: 32, message: "does not exists 32 character"}
+                  // password will valided later.
                 })}
                 placeholder="new password"
                 className="input input-bordered border-white bg-transparent text-white"
                 required
               />
-              <p>{errors?.newPassword?.message}</p>
+              <p>{errors.newPassword?.message}</p>
               <label className="label">
                 <span className="label-text text-white">Confirm Password</span>
               </label>

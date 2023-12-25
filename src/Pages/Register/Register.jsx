@@ -60,8 +60,8 @@ const Register = () => {
                 id="new"
                 {...register("newPassword", {
                   required: true,
-                  // minLength: { value: 8, message: "please provide minimum 8 character" },
-                  // maxLength: {value: 32, message: "does not exists 32 character"}
+                  minLength: { value: 8, message: "please provide minimum 8 character" },
+                  maxLength: {value: 32, message: "does not exists 32 character"}
                 })}
                 placeholder="new password"
                 className="input input-bordered border-white bg-transparent text-white"

@@ -1,18 +1,16 @@
-import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import bg from "../../assets/Photos/Login/background1.jpg";
-import { Link } from "react-router-dom";
+import { Form, Link } from "react-router-dom";
 
 const Register = () => {
-  const [disabled, setDisable] = useState(true);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const isMatched = () => {
-    const newPassword = document.getElementById("new").value;
-    const confirmPassword = document.getElementById("confirm").value;
-    if (confirmPassword.length > 0 && newPassword === confirmPassword) {
-      setDisable(false);
-    } else {
-      setDisable(true);
-    }
+  const onSubmit = (data) => {
+    console.log(data);
   };
 
   return (
@@ -28,16 +26,15 @@ const Register = () => {
           <div className="text-4xl font-bold text-white text-center mt-10">
             Register Now
           </div>
-          <form className="card-body">
+          <Form className="card-body" onSubmit={handleSubmit(onSubmit)}>
             <div className="form-control">
               <label className="label">
-                <span className="label-text text-white">
-                  Enter your fullname
-                </span>
+                <span className="label-text text-white">Enter your name</span>
               </label>
               <input
-                type="email"
-                placeholder="full name"
+                type="text"
+                {...register("name", { required: "name is required" })}
+                placeholder="name"
                 className="input input-bordered border-white bg-transparent text-white"
                 required
               />
@@ -46,6 +43,9 @@ const Register = () => {
               </label>
               <input
                 type="email"
+                {...register("email", {
+                  required: "please provide a valid email",
+                })}
                 placeholder="email"
                 className="input input-bordered border-white bg-transparent text-white"
                 required
@@ -58,37 +58,40 @@ const Register = () => {
               <input
                 type="password"
                 id="new"
+                {...register("newPassword", {
+                  required: true,
+                  // minLength: { value: 8, message: "please provide minimum 8 character" },
+                  // maxLength: {value: 32, message: "does not exists 32 character"}
+                })}
                 placeholder="new password"
                 className="input input-bordered border-white bg-transparent text-white"
                 required
               />
+              <p>{errors?.newPassword?.message}</p>
               <label className="label">
                 <span className="label-text text-white">Confirm Password</span>
               </label>
               <input
                 type="password"
                 id="confirm"
-                onChange={isMatched}
+                {...register("confirmPassword")}
                 placeholder="confirm password"
                 className="input input-bordered border-white bg-transparent text-white"
                 required
               />
             </div>
             <div className="form-control my-4">
-              <button
-                disabled={disabled}
-                className="btn bg-[#3B82F6] border-0 hover:bg-transparent text-white"
-              >
+              <button className="btn bg-[#3B82F6] border-0 hover:bg-transparent text-white">
                 Register
               </button>
             </div>
             <div className="form-control text-white">
-              If you already have an account ? please{" "}
+              If you already have an account ? please
               <Link to="/login" className="link">
                 login
               </Link>
             </div>
-          </form>
+          </Form>
         </div>
       </div>
     </div>

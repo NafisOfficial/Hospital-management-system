@@ -3,6 +3,9 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebookSquare } from "react-icons/fa";
 import bg from "../../assets/Photos/Login/background1.jpg";
 import { Form, Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProviders";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
   const {
@@ -11,8 +14,27 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
+  const {createUser} = useContext(AuthContext);
+
   const onSubmit = ({ name, email, newPassword, confirmPassword }) => {
-    console.log(name, email, newPassword, confirmPassword);
+    if(newPassword === confirmPassword){
+      createUser(email,confirmPassword)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        updateProfile(user,{displayName:name})
+        .then(()=>{
+          
+        })
+        .catch();
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
+    }else{
+      console.log("Password doesn't match");
+    }
+
   };
   
   const signInWithGoogle=(event)=>{

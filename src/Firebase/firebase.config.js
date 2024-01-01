@@ -12,6 +12,7 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_appId
 };
 
-const app = initializeApp(firebaseConfig);
+ const app = initializeApp(firebaseConfig);
 
-export default app;
+ export default app;
+

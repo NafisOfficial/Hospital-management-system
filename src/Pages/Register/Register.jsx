@@ -5,7 +5,10 @@ import bg from "../../assets/Photos/Login/background1.jpg";
 import { Form, Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
-import { updateProfile } from "firebase/auth";
+import { GoogleAuthProvider, updateProfile } from "firebase/auth";
+import { Result } from "postcss";
+
+const googleProvider = new GoogleAuthProvider();
 
 const Register = () => {
   const {
@@ -14,7 +17,7 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const {createUser} = useContext(AuthContext);
+  const {createUser,signUpWithGoogle} = useContext(AuthContext);
 
   const onSubmit = ({ name, email, newPassword, confirmPassword }) => {
     if(newPassword === confirmPassword){
@@ -39,6 +42,13 @@ const Register = () => {
   
   const signInWithGoogle=(event)=>{
     event.preventDefault();
+    signUpWithGoogle(googleProvider)
+    .then((result)=>{
+      console.log(result);
+    })
+    .catch((error)=>{
+      console.log(error.message);
+    })
   }
   const signInWithFacebook=(event)=>{
     event.preventDefault();

@@ -1,11 +1,9 @@
 import { useForm } from "react-hook-form";
-import { FcGoogle } from "react-icons/fc";
-import { FaFacebookSquare } from "react-icons/fa";
 import bg from "../../assets/Photos/Login/background1.jpg";
 import { Form, Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
-import { FacebookAuthProvider, GoogleAuthProvider, updateProfile } from "firebase/auth";
+import { updateProfile } from "firebase/auth";
 
 
 const Register = () => {
@@ -15,7 +13,7 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const {createUser,popUpSingIn} = useContext(AuthContext);
+  const {createUser} = useContext(AuthContext);
 
   const onSubmit = ({ name, email, newPassword, confirmPassword }) => {
     if(newPassword === confirmPassword){
@@ -38,28 +36,6 @@ const Register = () => {
 
   };
   
-  const signInWithGoogle=(event)=>{
-    event.preventDefault();
-    const googleProvider = new GoogleAuthProvider();
-    popUpSingIn(googleProvider)
-    .then((result)=>{
-      console.log(result);
-    })
-    .catch((error)=>{
-      console.log(error.message);
-    })
-  }
-  const signInWithFacebook=(event)=>{
-    event.preventDefault();
-    const facebookProvider = new FacebookAuthProvider();
-    popUpSingIn(facebookProvider)
-    .then((result)=>{
-      console.log(result);
-    })
-    .catch((error)=>{
-      console.log(error.message);
-    })
-  }
 
   return (
     <div
@@ -140,17 +116,6 @@ const Register = () => {
               <button className="btn bg-[#3B82F6] border-0 hover:bg-transparent text-white">
                 Register
               </button>
-              <div className="mt-2">
-                <p className="text-white">Try another way</p>
-                <div className="flex justify-between">
-                  <button onClick={signInWithGoogle} className="btn bg-transparent border-0 hover:bg-transparent text-white">
-                    <FcGoogle className="text-4xl"></FcGoogle>
-                  </button>
-                  <button onClick={signInWithFacebook} className="btn bg-transparent border-0 hover:bg-transparent text-white">
-                    <FaFacebookSquare className="text-4xl" />
-                  </button>
-                </div>
-              </div>
             </div>
             <div className="form-control text-white">
               If you already have an account ? please

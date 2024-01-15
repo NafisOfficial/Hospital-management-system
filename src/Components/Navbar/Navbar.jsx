@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logo from '../../assets/Photos/Logo/logo2.png'
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Providers/AuthProviders';
 
 const Navbar = () => {
+
+    const {user,logOut} = useContext(AuthContext);
+    const handleLogout = () =>{
+        logOut()
+        .then(() => {
+            // Sign-out successful.
+          }).catch((error) => {
+            console.log(error);
+          });
+    }
+
+
+
     return (
         <div className='sticky top-0 z-10'>
             <div className="navbar bg-blue-500 text-white ">
@@ -14,13 +28,13 @@ const Navbar = () => {
                     <Link to='/find-a-doctor'>Find a doctors</Link>
                     <Link to='/departments'>Departments</Link>
                     <Link to='/notice'>Notice</Link>
-                    <Link to='/login'>Login</Link>
+                    <Link hidden={user} to='/login'>Login</Link>
                 </div>
-                <div className="flex-none">
+                <div hidden={!user} className="flex-none">
                     <div className="dropdown dropdown-end">
                         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
-                                <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                <img src={user?.photoURL} />
                             </div>
                         </label>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
@@ -30,7 +44,7 @@ const Navbar = () => {
                                 </a>
                             </li>
                             <li><a>Settings</a></li>
-                            <li><a>Logout</a></li>
+                            <li><a onClick={handleLogout}>Logout</a></li>
                         </ul>
                     </div>
                 </div>

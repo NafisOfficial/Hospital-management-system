@@ -15,7 +15,6 @@ const AuthProviders = ({ children }) => {
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth,(currentUser)=>{
             setUser(currentUser);
-            console.log("Current user ",currentUser);
             isLoading(false);
         })
         return ()=>{
@@ -28,7 +27,7 @@ const AuthProviders = ({ children }) => {
         return createUserWithEmailAndPassword(auth,email,password)
     }
 
-    const signUpWithGoogle =(googleProvider) =>{
+    const popUpSingIn =(googleProvider) =>{
         isLoading(true);
         return signInWithPopup(auth,googleProvider)
     }
@@ -43,7 +42,7 @@ const AuthProviders = ({ children }) => {
         return signOut(auth);
     }
 
-    const authInfo = {user,loading,isLoading,signIn,logOut,createUser,setUser,signUpWithGoogle}
+    const authInfo = {user,loading,isLoading,signIn,logOut,createUser,setUser,popUpSingIn}
 
     return (
         <AuthContext.Provider value={authInfo}>

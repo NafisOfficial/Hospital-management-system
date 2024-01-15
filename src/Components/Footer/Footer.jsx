@@ -49,7 +49,7 @@ const Footer = () => {
                     </nav>
                 </div>
                 <aside className='text-center py-4'>
-                    <p>Copyright © 2023 - All right reserved by ACME Industries Ltd</p>
+                    <p>Copyright © 2023 - All right reserved by medicare hospital Ltd</p>
                 </aside>
             </footer>
         </div>

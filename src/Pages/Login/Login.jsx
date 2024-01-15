@@ -1,25 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import bg from "../../assets/Photos/Login/background2.jpg";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../Providers/AuthProviders";
 import { GoogleAuthProvider } from "firebase/auth";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const { popUpSingIn } = useContext(AuthContext);
 
-  const {popUpSingIn} = useContext(AuthContext);
-
-  const signInWithGoogle=(event)=>{
+  const signInWithGoogle = (event) => {
     event.preventDefault();
     const googleProvider = new GoogleAuthProvider();
     popUpSingIn(googleProvider)
-    .then((result)=>{
-      console.log(result);
-    })
-    .catch((error)=>{
-      console.log(error.message);
-    })
-  }
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -50,15 +51,31 @@ const Login = () => {
               />
             </div>
             <div className="form-control">
-              <label className="label">
-                <span className="label-text text-white">Password</span>
-              </label>
-              <input
-                type="password"
-                placeholder="password"
-                className="input input-bordered border-white bg-transparent text-white"
-                required
-              />
+              <div className="form-control relative">
+                <label className="label">
+                  <span className="label-text text-white">Password</span>
+                </label>
+                <input
+                  type={showNewPassword?`text`:`password`}
+                  placeholder="password"
+                  className="input input-bordered border-white bg-transparent text-white"
+                  required
+                />
+                <span
+                  onClick={() => setShowNewPassword(true)}
+                  hidden={showNewPassword}
+                  className="absolute right-2 hover:bg-slate-100/20 hover:rounded-lg p-1 bottom-3"
+                >
+                  <FaEye className="text-lg text-white" />
+                </span>
+                <span
+                  hidden={!showNewPassword}
+                  onClick={() => setShowNewPassword(false)}
+                  className="absolute right-2 hover:bg-slate-100/20 hover:rounded-lg p-1 bottom-3"
+                >
+                  <FaEyeSlash className="text-lg text-white" />
+                </span>
+              </div>
               <label className="label">
                 <a
                   href="#"
@@ -76,11 +93,12 @@ const Login = () => {
                 Login
               </button>
               <button
-                  onClick={signInWithGoogle}
-                  className="btn mt-3 bg-gray-700 hover:bg-transparent border-0 text-white"
-                >
-                  <FcGoogle className="text-4xl"></FcGoogle> <span>Login with google</span>
-                </button>
+                onClick={signInWithGoogle}
+                className="btn mt-3 bg-gray-700 hover:bg-transparent border-0 text-white"
+              >
+                <FcGoogle className="text-4xl"></FcGoogle>{" "}
+                <span>Login with google</span>
+              </button>
             </div>
             <div className="form-control text-white">
               If you do not have any account ? please{" "}

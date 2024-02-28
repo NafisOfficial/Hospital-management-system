@@ -44,6 +44,7 @@ const Navbar = () => {
                                 </a>
                             </li>
                             <li><a>Settings</a></li>
+                            <li><a>Appointed</a></li>
                             <li><a onClick={handleLogout}>Logout</a></li>
                         </ul>
                     </div>

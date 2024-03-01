@@ -22,11 +22,11 @@ const Navbar = () => {
             <div className="navbar bg-blue-500 text-white ">
                 <div className="flex-1">
                     <img src={logo} alt="" className='h-10 w-14'/>
-                    <Link to='/' className="btn btn-ghost normal-case text-xl">MediCare</Link>
+                    <Link to='/' className="btn btn-ghost normal-case text-xl">FEC Medical Center</Link>
                 </div>
                 <div className='flex me-5 gap-5'>
-                    <Link to='/find-a-doctor'>Find a doctors</Link>
-                    <Link to='/departments'>Departments</Link>
+                    <Link to='/find-a-doctor'>Emmergency</Link>
+                    <Link to='/departments'>Appointment</Link>
                     <Link to='/notice'>Notice</Link>
                     <Link hidden={user} to='/login'>Login</Link>
                 </div>

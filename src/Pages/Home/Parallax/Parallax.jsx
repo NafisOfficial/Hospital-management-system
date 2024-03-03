@@ -38,8 +38,8 @@ const Parallax = () => {
             </div>
           </div>
         </div>
-        <div className="flex gap-5"><button className="btn bg-red-700 border-none text-white">ইমাজেন্সি সিট বুকিং</button>
-        <button className="btn bg-blue-700 border-none text-white">টোকেন সংগ্রহ</button>
+        <div className="flex gap-5"><button className="btn bg-red-700 border-none text-white"><Link to='/emmergency'>ইমাজেন্সি সিট বুকিং</Link></button>
+        <button className="btn bg-blue-700 border-none text-white"><Link to='/appointment'>টিকিট সংগ্রহ করুন</Link></button>
         </div>
       </div>
     </div>

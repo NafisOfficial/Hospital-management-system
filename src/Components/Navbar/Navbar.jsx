@@ -25,8 +25,9 @@ const Navbar = () => {
                     <Link to='/' className="btn btn-ghost normal-case text-xl">FEC Medical Center</Link>
                 </div>
                 <div className='flex me-5 gap-5'>
-                    <Link to='/find-a-doctor'>Emmergency</Link>
-                    <Link to='/departments'>Appointment</Link>
+                    <Link to='/'>Home</Link>
+                    <Link to='/emmergency'>Emmergency</Link>
+                    <Link to='/appointment'>Appointment</Link>
                     <Link to='/notice'>Notice</Link>
                     <Link hidden={user} to='/login'>Login</Link>
                 </div>

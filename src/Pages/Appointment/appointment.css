@@ -1,6 +1,6 @@
 .banner{
     background-image: url("../../assets/Photos/banner/form_bg.jpg");
-    height: 100vh;
+    height: max-content;
     width: 100%;
     background-repeat: no-repeat;
     background-size: cover;

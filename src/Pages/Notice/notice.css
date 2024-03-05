@@ -1,0 +1,13 @@
+.notice{
+    height: 90vh;
+    background-attachment: fixed;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    font-size: 30px;
+    color: #2b82f6;
+}

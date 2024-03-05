@@ -1,9 +1,9 @@
-import React from 'react';
+import './notice.css'
 
 const Notice = () => {
     return (
-        <div>
-            <h1 className='flex items-center justify-center py-40 text-[#2b82f6]'>বর্তমানে কোনো নোটিশ নেই ।</h1>
+        <div className='notice'>
+            <div className='center'>বর্তমানে কোনো নোটিশ নেই ।</div>
         </div>
     );
 };

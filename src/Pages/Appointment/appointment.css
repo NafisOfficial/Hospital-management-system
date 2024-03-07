@@ -1,8 +1,14 @@
 .banner{
     background-image: url("../../assets/Photos/banner/form_bg.jpg");
-    height: max-content;
+    height: 90vh;
     width: 100%;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+}
+
+select option{
+    color: white;
+    background-color: black;
+    margin: 5px;
 }

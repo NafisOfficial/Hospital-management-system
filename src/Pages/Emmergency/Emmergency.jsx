@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Emmergency = () => {
+const emergency = () => {
     return (
         <div>
-            Emmergency
+            emergency
         </div>
     );
 };
 
-export default Emmergency;
+export default emergency;

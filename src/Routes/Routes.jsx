@@ -7,6 +7,7 @@ import Login from "../Pages/Login/Login";
 import Notice from "../Pages/Notice/Notice";
 import Register from "../Pages/Register/Register";
 import Appointment from "../Pages/Appointment/Appointment";
+import PrivateRoute from "./PrivateRoute";
 
 
 
@@ -35,7 +36,7 @@ export const router = createBrowserRouter(
                 },
                 {
                     path:'appointment',
-                    element:<Appointment></Appointment>
+                    element:<PrivateRoute><Appointment></Appointment></PrivateRoute>
                 },
             ]
         }

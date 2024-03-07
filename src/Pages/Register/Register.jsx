@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import bg from "../../assets/Photos/Login/background1.jpg";
-import { Form, Link } from "react-router-dom";
+import { Form, Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
 import { updateProfile } from "firebase/auth";
@@ -10,6 +10,9 @@ const Register = () => {
 
   const [showNewPassword,setShowNewPassword] = useState(false);
   const [showConfirmPassword,setShowConfirmPassword] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname
 
   const {
     register,
@@ -25,7 +28,9 @@ const Register = () => {
         .then((userCredential) => {
           const user = userCredential.user;
           updateProfile(user, { displayName: name })
-            .then(() => {})
+            .then(() => {
+              navigate(from,{replace: true});
+            })
             .catch();
         })
         .catch((error) => {
@@ -89,7 +94,7 @@ const Register = () => {
                   id="new"
                   {...register("newPassword", {
                     required: true,
-                    //--------------------- password will valided later.---------------------------
+                    //---------------------todos: password will valided later.---------------------------
                   })}
                   placeholder="new password"
                   className="input ps-1 border-0 rounded-none border-b-2 input-sm focus:outline-0 border-white bg-transparent text-white"
@@ -108,7 +113,7 @@ const Register = () => {
                   <span className="text-white">Confirm Password</span>
                 </label>
                 <input
-                  type={showNewPassword?`text`:`password`}
+                  type={showConfirmPassword?`text`:`password`}
                   id="confirm"
                   {...register("confirmPassword")}
                   placeholder="confirm password"

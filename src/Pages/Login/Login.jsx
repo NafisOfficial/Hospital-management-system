@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import bg from "../../assets/Photos/Login/background2.jpg";
-import { Link } from "react-router-dom";
+import { Form, Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../Providers/AuthProviders";
 import { GoogleAuthProvider } from "firebase/auth";
@@ -8,23 +8,39 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const [showNewPassword, setShowNewPassword] = useState(false);
-  const { popUpSingIn } = useContext(AuthContext);
+  const { popUpSingIn,signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location?.state?.from?.pathname || "/"
 
   const signInWithGoogle = (event) => {
     event.preventDefault();
     const googleProvider = new GoogleAuthProvider();
     popUpSingIn(googleProvider)
-      .then((result) => {
-        console.log(result);
+      .then(() => {
+        navigate(from,{replace: true})
       })
       .catch((error) => {
         console.log(error.message);
       });
   };
 
-  const handleLogin = (event) => {
+  const handleLogin =(event)=>{
     event.preventDefault();
-  };
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    signIn(email,password)
+    .then(()=>{
+      navigate(from,{replace: true})
+
+    })
+    .catch((error)=>{
+      const errorMessage = error.message;
+      console.log(errorMessage)
+    })
+  }
+  
   return (
     <div
       className="hero min-h-screen"
@@ -38,13 +54,14 @@ const Login = () => {
           <div className="text-4xl font-bold text-white text-center mt-10">
             Login Now
           </div>
-          <form className="card-body">
+          <Form onSubmit={handleLogin} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text text-white">Email</span>
               </label>
               <input
                 type="email"
+                name="email"
                 placeholder="email"
                 className="input input-bordered border-white bg-transparent text-white"
                 required
@@ -58,6 +75,7 @@ const Login = () => {
                 <input
                   type={showNewPassword?`text`:`password`}
                   placeholder="password"
+                  name="password"
                   className="input input-bordered border-white bg-transparent text-white"
                   required
                 />
@@ -76,18 +94,10 @@ const Login = () => {
                   <FaEyeSlash className="text-lg text-white" />
                 </span>
               </div>
-              <label className="label">
-                <a
-                  href="#"
-                  className="label-text-alt link link-hover text-white"
-                >
-                  Forgot password?
-                </a>
-              </label>
             </div>
             <div className="form-control my-4">
               <button
-                onSubmit={handleLogin}
+              type="submit"
                 className="btn bg-[#3B82F6] border-0 hover:bg-transparent text-white"
               >
                 Login
@@ -106,7 +116,7 @@ const Login = () => {
                 register
               </Link>
             </div>
-          </form>
+          </Form>
         </div>
       </div>
     </div>

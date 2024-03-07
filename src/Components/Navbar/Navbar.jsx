@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import logo from '../../assets/Photos/Logo/logo2.png'
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProviders';
+import demoProfile from '../../assets/Photos/Login/demo-profile-pic.png'
 
 const Navbar = () => {
 
@@ -15,7 +16,7 @@ const Navbar = () => {
           });
     }
 
-
+    console.log(user);
 
     return (
         <div className='sticky top-0 z-10'>
@@ -26,7 +27,7 @@ const Navbar = () => {
                 </div>
                 <div className='flex me-5 gap-5'>
                     <Link to='/'>Home</Link>
-                    <Link to='/emergency'>emergency</Link>
+                    <Link to='/doctors'>Doctors</Link>
                     <Link to='/appointment'>Appointment</Link>
                     <Link to='/notice'>Notice</Link>
                     <Link hidden={user} to='/login'>Login</Link>
@@ -35,7 +36,7 @@ const Navbar = () => {
                     <div className="dropdown dropdown-end">
                         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
-                                <img src={user?.photoURL} />
+                                <img src={user?.photoURL || demoProfile} />
                             </div>
                         </label>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
@@ -44,7 +45,6 @@ const Navbar = () => {
                                     Profile
                                 </a>
                             </li>
-                            <li><a>Settings</a></li>
                             <li><a>Appointed</a></li>
                             <li><a onClick={handleLogout}>Logout</a></li>
                         </ul>

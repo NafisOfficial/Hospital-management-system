@@ -3,6 +3,7 @@ import logo from '../../assets/Photos/Logo/logo2.png'
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProviders';
 import demoProfile from '../../assets/Photos/Login/demo-profile-pic.png'
+import { Bounce, ToastContainer, toast } from 'react-toastify';
 
 const Navbar = () => {
 
@@ -10,13 +11,22 @@ const Navbar = () => {
     const handleLogout = () =>{
         logOut()
         .then(() => {
-            // Sign-out successful.
+            toast.success('Logout successful', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+                });
           }).catch((error) => {
             console.log(error);
           });
     }
 
-    console.log(user);
 
     return (
         <div className='sticky top-0 z-10'>
@@ -51,6 +61,19 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable={false}
+            pauseOnHover
+            theme="light"
+            transition: Bounce
+            />
         </div>
     );
 }

@@ -5,6 +5,8 @@ import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../Providers/AuthProviders";
 import { GoogleAuthProvider } from "firebase/auth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Bounce, toast } from "react-toastify";
+import SuccessTostify from "../../Components/Tostify/SuccessTostify";
 
 const Login = () => {
   const [showNewPassword, setShowNewPassword] = useState(false);
@@ -20,9 +22,31 @@ const Login = () => {
     popUpSingIn(googleProvider)
       .then(() => {
         navigate(from,{replace: true})
+        toast.success('Logged In', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce
+          });
       })
       .catch((error) => {
-        console.log(error.message);
+        const errorMessage = error.message;
+        toast.error(`${errorMessage}`, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce
+          });
       });
   };
 
@@ -33,11 +57,32 @@ const Login = () => {
     signIn(email,password)
     .then(()=>{
       navigate(from,{replace: true})
+      toast.success('Logged In', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        });
 
     })
     .catch((error)=>{
       const errorMessage = error.message;
-      console.log(errorMessage)
+      toast.error(`${errorMessage}`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        });
     })
   }
   
@@ -119,6 +164,7 @@ const Login = () => {
           </Form>
         </div>
       </div>
+      <SuccessTostify/>
     </div>
   );
 };

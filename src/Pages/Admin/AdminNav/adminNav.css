@@ -1,0 +1,39 @@
+.aside{
+    margin: 0px;
+    padding: 0px;
+    width: 200px;
+    height: 100%;
+    background-color: #2665ca;
+    position: fixed;
+    overflow: auto;
+}
+
+/* Sidebar links */
+.aside a {
+    display: block;
+    color: black;
+    font-size: 18px;
+    padding: 16px;
+    color: aliceblue;
+    text-decoration: none;
+  }
+  
+  /* Active/current link */
+  .aside a.active {
+    background-color: #1f119b;
+    color: white;
+  }
+  
+  /* Links on mouse-over */
+  .aside a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+  
+  /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+  div.content {
+    margin-left: 200px;
+    padding: 1px 16px;
+    height: 1000px;
+  }
+  

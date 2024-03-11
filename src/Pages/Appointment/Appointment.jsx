@@ -29,6 +29,47 @@ const Appointment = () => {
     });
   };
 
+  const handleSubmit=(event)=>{
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const age = form.age.value;
+    const partsOfBody = form.partsOfBody.value;
+    const bloodGroup = form.bloodGroup.value;
+    const email = form.email.value;
+    const date = form.datePicker.value;
+    const phoneNumber = form.phoneNumber.value;
+    const problemDetails = form.problemDetails.value;
+    const situation = emergency
+    const time = "";
+    const approve = false;
+
+    const patientData = {name,age,partsOfBody,bloodGroup,email,date,phoneNumber,problemDetails,situation,time,approve}
+
+    fetch("http://localhost:5000/appointment",{
+      method: 'POST',
+      headers:{
+        'Content-Type': 'application/json' 
+      },
+      body: JSON.stringify(patientData)
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      if(data.insertedId){
+        Swal.fire({
+          title: "নোটিস",
+          text: "আপনার আনুরোধটি গৃহিত হয়েছে । ২৪ ঘন্টার মধ্যে আসন ফাকা সাপেক্ষে অনুমোদন করা হবে ।"
+
+        });
+        console.log(data);
+      }
+    })
+    .catch(error => console.error('Error:', error));
+
+    
+
+  }
+
   return (
     <div className="banner">
       <div className="pt-5">
@@ -51,13 +92,14 @@ const Appointment = () => {
             <IoIosHelpCircle className="text-xl" /> <span>সাহায্য</span>
           </button>
         </div>
-        <form className="mx-10">
+        <form onSubmit={handleSubmit} className="mx-10">
           <div className="flex gap-14">
             <div>
               <label className="label pb-0 px-0">
                 <span className="text-white">রোগীর পুরো নাম লিখুন :</span>
               </label>
               <input
+                name="name"
                 type="text"
                 placeholder="এখানে লিখুন"
                 className={`input ps-1 w-64 ${
@@ -71,6 +113,7 @@ const Appointment = () => {
                 <span className="text-white">রোগীর বয়স :</span>
               </label>
               <input
+                name="age"
                 type="text"
                 placeholder="এখানে লিখুন"
                 className={`input ps-1 w-64 ${
@@ -84,6 +127,7 @@ const Appointment = () => {
                 <span className="text-white">আহত অঙ্গের নাম :</span>
               </label>
               <input
+                name="partsOfBody"
                 type="text"
                 placeholder="এখানে লিখুন"
                 className={`input ps-1 w-64 ${
@@ -97,19 +141,20 @@ const Appointment = () => {
                 <span className="text-white">রক্তের গ্রুপ :</span>
               </label>
               <select
+                name="bloodGroup"
                 className={`select select-bordered w-52 select-sm bg-transparent ${
                   emergency ? "border-red-700" : "border-white"
                 } input-sm focus:outline-0`}
               >
-                <option>জানা নেই</option>
-                <option>এ পজেটিভ</option>
-                <option>বি পজেটিভ</option>
-                <option>এবি পজেটিভ</option>
-                <option>ও পজেটিভ</option>
-                <option>এ ন্যাগেটিভ</option>
-                <option>বি ন্যাগেটিভ</option>
-                <option>এবি ন্যাগেটিভ</option>
-                <option>ও ন্যাগেটিভ</option>
+                <option value="জানা নেই">জানা নেই</option>
+                <option value="এ পজেটিভ">এ পজেটিভ</option>
+                <option value="বি পজেটিভ">বি পজেটিভ</option>
+                <option value="এবি পজেটিভ">এবি পজেটিভ</option>
+                <option value="ও পজেটিভ">ও পজেটিভ</option>
+                <option value="এ ন্যাগেটিভ">এ ন্যাগেটিভ</option>
+                <option value="বি ন্যাগেটিভ">বি ন্যাগেটিভ</option>
+                <option value="এবি ন্যাগেটিভ">এবি ন্যাগেটিভ</option>
+                <option value="ও ন্যাগেটিভ">ও ন্যাগেটিভ</option>
               </select>
             </div>
           </div>
@@ -120,6 +165,7 @@ const Appointment = () => {
               </label>
               <input
                 type="text"
+                name="phoneNumber"
                 placeholder="এখানে লিখুন"
                 className={`input ps-1 w-64 ${
                   emergency ? "border-red-700" : "border-white"
@@ -134,6 +180,7 @@ const Appointment = () => {
               </label>
               <input
                 type="text"
+                name="email"
                 placeholder="এখানে লিখুন"
                 className={`input ps-1 w-64 ${
                   emergency ? "border-red-700" : "border-white"
@@ -160,6 +207,7 @@ const Appointment = () => {
           <div className="mt-12">
             <label htmlFor="textarea">সম্যসার বিস্তারিত বিবরণ লিখুন :</label>
             <textarea
+              name="problemDetails"
               id="textarea"
               className={`textarea ${
                 emergency ? "border-red-700" : "border-white"

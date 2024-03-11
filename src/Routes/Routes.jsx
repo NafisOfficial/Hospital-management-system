@@ -12,6 +12,10 @@ import AdminHome from "../Pages/Admin/AdminHome/AdminHome";
 import MyAppointment from "../Pages/MyAppointment/MyAppointment";
 import Profile from "../Pages/Profile/Profile";
 import AllPatients from "../Pages/AllPatients/AllPatients";
+import DoctorsInfo from "../Pages/DoctorsInfo/DoctorsInfo";
+import AHome from "../Pages/Admin/Home/AHome";
+import ManageDoctors from "../Pages/Admin/ManageDoctor/ManageDoctors";
+import AddDoctor from "../Pages/Admin/AddDoctor/AddDoctor";
 
 
 
@@ -53,15 +57,24 @@ export const router = createBrowserRouter(
                 {
                     path:'patents/all',
                     element:<AllPatients/>
+                },
+                {
+                    path: "doctors",
+                    element: <DoctorsInfo/>
                 }
             ]
         },
         {
-            path:'/users/admin',
+            path:'users/admin',
             element: <AdminHome/>,
             children:[
                 {
-                    
+                    path:"manage-doctors",
+                    element:<ManageDoctors/>
+                },
+                {
+                    path:"add-doctors",
+                    element:<AddDoctor/>
                 }
             ]
         }
